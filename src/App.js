@@ -1,11 +1,37 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 import './App.css';
 import HomePage from './pages/homePage';
+
+const HatsPage = () => {
+  return ( 
+    <div>
+      <h1>HATS PAGE</h1>
+    </div>
+   );
+}
+
+const JacketPage = () => {
+  return ( 
+    <div>
+      <h1>JACKET PAGE</h1>
+    </div>
+   );
+}
 
 const App = () => {
     return (
       <div className='App'>
-        <HomePage />
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/shop/hats" component={HatsPage} />
+          <Route exact path="/shop/jackets" component={JacketPage} />
+        </Switch>
       </div>
     );
 }
