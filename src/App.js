@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import './App.css';
 import HomePage from './pages/homePage';
+import ShopPage from './pages/shopPage';
 
 const HatsPage = () => {
   return ( 
@@ -29,6 +30,7 @@ const App = () => {
       <div className='App'>
         <Switch>
           <Route exact path="/" component={HomePage} />
+          <Route exact path="/shop" component={ShopPage} />
           <Route exact path="/shop/hats" component={HatsPage} />
           <Route exact path="/shop/jackets" component={JacketPage} />
         </Switch>
