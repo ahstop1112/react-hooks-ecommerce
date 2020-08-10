@@ -11,7 +11,7 @@ import HomePage from './pages/homePage';
 import ShopPage from './pages/shopPage';
 import SignInSignUpPage from './pages/signInSignUpPage';
 
-import { auth } from './firebase/utils';
+import { auth, createUserProfileDocument } from './firebase/utils';
 
 const HatsPage = () => {
   return ( 
@@ -37,11 +37,26 @@ class App extends Component {
     };
   };
 
-  componentDidMount(){
-    this.unSubscribeFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({ currentUser: user});
+  unSubscribeFromAuth = null;
 
-      console.log(user); 
+  componentDidMount(){
+    this.unSubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth){
+        const userRef = await createUserProfileDocument(userAuth);
+
+        userRef.onSnapshot(snapShot => {
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          }, () => {
+            console.log(this.state);
+          })
+        })
+      };
+
+      this.setState({currentUser: userAuth});
     })
   };
 
