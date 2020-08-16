@@ -1,0 +1,16 @@
+
+.sign-in-and-sign-up {
+  display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+}
+  
+.directory-menu {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
