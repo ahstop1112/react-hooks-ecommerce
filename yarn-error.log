@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/Cellar/yarn/1.19.1/libexec/bin/yarn.js add redux-presist
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.19.1/libexec/bin/yarn.js add style-components
 
 PATH: 
   /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/redux-presist: Not found
+  Error: https://registry.yarnpkg.com/style-components: Not found
       at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.19.1/libexec/lib/cli.js:66926:18)
       at Request.self.callback (/usr/local/Cellar/yarn/1.19.1/libexec/lib/cli.js:140564:22)
       at Request.emit (events.js:210:5)
@@ -39,8 +39,10 @@ npm manifest:
       "react-redux": "^7.2.1",
       "react-router-dom": "^5.2.0",
       "react-scripts": "2.1.8",
+      "react-stripe-checkout": "^2.6.3",
       "redux": "^4.0.5",
       "redux-logger": "^3.0.6",
+      "redux-persist": "^6.0.0",
       "reselect": "^4.0.0"
     },
     "scripts": {
@@ -9126,6 +9128,11 @@ Lockfile:
     optionalDependencies:
       fsevents "1.2.4"
   
+  react-stripe-checkout@^2.6.3:
+    version "2.6.3"
+    resolved "https://registry.yarnpkg.com/react-stripe-checkout/-/react-stripe-checkout-2.6.3.tgz#3173a870b04e5a3c321a06d24cd53c6030111c45"
+    integrity sha1-MXOocLBOWjwyGgbSTNU8YDARHEU=
+  
   react@^16.8.6:
     version "16.13.1"
     resolved "https://registry.yarnpkg.com/react/-/react-16.13.1.tgz#2e818822f1a9743122c063d6410d85c1e3afe48e"
@@ -9235,6 +9242,11 @@ Lockfile:
     integrity sha1-91VZZvMJjzyIYExEnPC69XeCdL8=
     dependencies:
       deep-diff "^0.3.5"
+  
+  redux-persist@^6.0.0:
+    version "6.0.0"
+    resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-6.0.0.tgz#b4d2972f9859597c130d40d4b146fecdab51b3a8"
+    integrity sha512-71LLMbUq2r02ng2We9S215LtPu3fY0KgaGE0k8WRgl6RkqxtGfl7HUozz1Dftwsb0D/5mZ8dwAaPbtnzfvbEwQ==
   
   redux@^4.0.5:
     version "4.0.5"

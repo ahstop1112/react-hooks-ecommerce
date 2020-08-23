@@ -3,7 +3,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
   Redirect
 } from "react-router-dom";
 import { connect } from 'react-redux';
@@ -14,7 +13,6 @@ import HomePage from './pages/homePage';
 import ShopPage from './pages/shop';
 import SignInSignUpPage from './pages/signInSignUp';
 import CheckoutPage from './pages/checkout';
-
 import { auth, createUserProfileDocument } from './firebase/utils';
 import { setCurrentUser } from './redux/user/userAction';
 import { selectCurrentUser } from './redux/user/userSelector';
@@ -40,7 +38,7 @@ class App extends Component {
   unSubscribeFromAuth = null;
 
   componentDidMount(){
-    const {setCurrentUser} = this.props;
+  const {setCurrentUser/*collectionsArray*/} = this.props;
 
     this.unSubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth){
@@ -54,6 +52,7 @@ class App extends Component {
         })
 
         setCurrentUser(userAuth);
+        // addCollectionAndDocuments('collections', collectionsArray.map(({title, items}) => ({title, items})));
       };
     })
   };
@@ -85,7 +84,8 @@ class App extends Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser
+  currentUser: selectCurrentUser,
+  // collectionsArray: selectCollectionForPreview
 })
 
 const mapDispatchToProps = dispatch => ({
