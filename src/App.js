@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -19,52 +19,9 @@ import { auth, createUserProfileDocument } from './firebase/utils';
 import { setCurrentUser } from './redux/user/userAction';
 import { selectCurrentUser } from './redux/user/userSelector';
 
-const HatsPage = () => {
+const App = () => {
   return ( 
-    <div>
-      <h1>HATS PAGE</h1>
-    </div>
-   );
-}
-
-const JacketPage = () => {
-  return ( 
-    <div>
-      <h1>JACKET PAGE</h1>
-    </div>
-   );
-}
-
-class App extends Component {
-
-  unSubscribeFromAuth = null;
-
-  componentDidMount(){
-    const {setCurrentUser} = this.props;
-
-    this.unSubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-      if (userAuth){
-        const userRef = await createUserProfileDocument(userAuth);
-
-        userRef.onSnapshot(snapShot => {
-          this.props.setCurrentUser({
-              id: snapShot.id,
-              ...snapShot.data()
-          });
-        })
-
-        setCurrentUser(userAuth);
-      };
-    })
-  };
-
-  componentWillUnmount(){
-    this.unSubscribeFromAuth();
-  }
-
-  render() { 
-    return ( 
-      <div className='App'>
+    <div className='App'>
         <Header />
         <Switch>
           <Route exact path="/" component={HomePage} />
@@ -76,13 +33,44 @@ class App extends Component {
               )} />
           <Route path="/shop" component={ShopPage} />
           <Route exact path="/checkout" component={CheckoutPage} />
-          <Route exact path="/shop/hats" component={HatsPage} />
-          <Route exact path="/shop/jackets" component={JacketPage} />
         </Switch>
       </div>
-    );
-  }
+  );
 }
+
+// class App extends Component {
+
+//   unSubscribeFromAuth = null;
+
+//   componentDidMount(){
+//     const {setCurrentUser} = this.props;
+
+//     this.unSubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+//       if (userAuth){
+//         const userRef = await createUserProfileDocument(userAuth);
+
+//         userRef.onSnapshot(snapShot => {
+//           this.props.setCurrentUser({
+//               id: snapShot.id,
+//               ...snapShot.data()
+//           });
+//         })
+
+//         setCurrentUser(userAuth);
+//       };
+//     })
+//   };
+
+//   componentWillUnmount(){
+//     this.unSubscribeFromAuth();
+//   }
+
+//   render() { 
+//     return ( 
+      
+//     );
+//   }
+// }
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser
